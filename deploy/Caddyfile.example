@@ -1,0 +1,22 @@
+# 将 example.com 替换为真实域名。
+# Frontend 和 Backend 保持仅监听 127.0.0.1。
+
+app.example.com {
+    @ws path /ws /ws/*
+
+    handle @ws {
+        reverse_proxy 127.0.0.1:8080 {
+            flush_interval -1
+        }
+    }
+
+    handle {
+        reverse_proxy 127.0.0.1:3000
+    }
+}
+
+api.example.com {
+    reverse_proxy 127.0.0.1:8080 {
+        flush_interval -1
+    }
+}

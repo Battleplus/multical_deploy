@@ -117,6 +117,7 @@ claude --version
 
 - [`docs/architecture.md`](docs/architecture.md)：架构选择、网络流向和故障边界；
 - [`docs/deployment.md`](docs/deployment.md)：完整部署和验收步骤；
+- [`docs/mac-hardware-readiness.md`](docs/mac-hardware-readiness.md)：当前 Mac 的硬件检查、容量判断和部署前准备；
 - [`docs/responsibilities.md`](docs/responsibilities.md)：两台 Mac 与人员职责分工；
 - [`docs/security-and-operations.md`](docs/security-and-operations.md)：安全、备份和日常运维；
 - [`deploy/Caddyfile.example`](deploy/Caddyfile.example)：反向代理模板；

@@ -2,9 +2,28 @@
 
 本仓库用于在当前 Mac mini 上按照 [Multica 官方仓库](https://github.com/multica-ai/multica) 的原版方式完成最小可用部署。
 
-现阶段只解决一个目标：
+当前单机 MVP 已完成，现阶段目标是：
 
-> 在一台 Mac 上启动 Multica，创建一个可用 Agent，并成功执行一次完整任务。
+> 保持 Multica 只监听本机，通过 Tailscale Serve 向受控协作者提供私密 HTTPS 访问。
+
+## 当前运行状态
+
+- Docker Engine、PostgreSQL、Backend、Frontend 正常；
+- Backend `/readyz` 返回 `200`，数据库和迁移检查正常；
+- Workspace：`111`；
+- Runtime：本机 Codex，在线；
+- Agent：`mvp-agent`，并发上限 `1`；
+- 两个 MVP 测试任务均已完成；
+- Docker 端口仍只绑定 `127.0.0.1`；
+- Tailscale Serve 已启用，未启用 Funnel；
+- Tailnet 私密任务地址：<https://0000mac-mini.tail5875d4.ts.net/111/issues>。
+
+该地址不是公网网站。只有获得 Tailnet 或该设备访问权限，并拥有 Workspace `111` 中 Multica 账号的用户才能进入任务界面。
+
+详细接入说明：
+
+- [`docs/tailscale-collaboration.md`](docs/tailscale-collaboration.md)
+- [`docs/ai-collaborator-onboarding.md`](docs/ai-collaborator-onboarding.md)
 
 ## 当前 MVP 范围
 
@@ -66,13 +85,13 @@ flowchart TB
 | 机型 | Mac mini | 适合固定部署 |
 | 芯片 | Apple M4，10 核 CPU | 性能满足 MVP |
 | 内存 | 16 GB | 建议先限制为 1 个并发任务 |
-| 磁盘 | 约 228 GB，总可用约 151 GB | 可以开始部署，需要监控空间 |
+| 磁盘 | 约 228 GB，部署后可用约 140 GB | 当前充足，需要持续监控 |
 | 系统 | macOS 15.6 | 满足基础要求 |
-| Docker | 尚未安装 | 当前首要阻塞项 |
+| Docker | Docker Desktop 4.91.0 | 已安装并运行 |
 | 自动睡眠 | 已开启 | 正式持续运行前需要关闭 |
 | 断电自动启动 | 未开启 | 后续持续运行时建议开启 |
 
-结论：当前 Mac 支持 Multica 官方单机部署。建议 MVP 阶段只同时执行一个 Agent 任务。
+结论：当前 Mac 已完成 Multica 官方单机 MVP。继续保持同时最多执行一个 Agent 任务。
 
 文档没有记录设备序列号、Hardware UUID、Provisioning UDID 等设备隐私信息。
 
